@@ -1,5 +1,6 @@
 from custom_imports.importer import (
     Finder,
+    Importer,
     Loader,
     Module,
     ModuleSpec,
@@ -7,4 +8,12 @@ from custom_imports.importer import (
     SimpleLoader,
 )
 
-__all__ = ["ModuleSpec", "Module", "Finder", "Loader", "SimpleFinder", "SimpleLoader"]
+__all__ = [
+    "ModuleSpec",
+    "Module",
+    "Finder",
+    "Loader",
+    "SimpleFinder",
+    "SimpleLoader",
+    "Importer",
+]
