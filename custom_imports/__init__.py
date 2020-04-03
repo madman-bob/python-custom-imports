@@ -1,4 +1,4 @@
-from custom_imports.file_module import FileModuleLoader
+from custom_imports.file_module import FileModuleExtensionFinder, FileModuleLoader
 from custom_imports.importer import (
     Finder,
     Importer,
@@ -17,5 +17,6 @@ __all__ = [
     "SimpleFinder",
     "SimpleLoader",
     "Importer",
+    "FileModuleExtensionFinder",
     "FileModuleLoader",
 ]
