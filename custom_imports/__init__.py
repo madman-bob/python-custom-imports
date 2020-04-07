@@ -8,6 +8,12 @@ from custom_imports.importer import (
     SimpleFinder,
     SimpleLoader,
 )
+from custom_imports.sample_importers import (
+    CSVImporter,
+    cfg_importer,
+    ini_importer,
+    json_importer,
+)
 
 __all__ = [
     "ModuleSpec",
@@ -19,4 +25,8 @@ __all__ = [
     "Importer",
     "FileModuleExtensionFinder",
     "FileModuleLoader",
+    "json_importer",
+    "cfg_importer",
+    "ini_importer",
+    "CSVImporter",
 ]
