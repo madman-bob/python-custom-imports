@@ -1,9 +1,12 @@
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from unittest import TestCase
 
 from custom_imports.file_module import FileModuleLoader
 from custom_imports.importer import Module, ModuleSpec
+
+PY_36 = sys.version_info[:2] == (3, 6)
 
 project_root = Path(__file__).parents[2]
 
@@ -35,7 +38,10 @@ class TestFileModuleLoader(TestCase):
             self.assertIsInstance(module, SimpleModule)
             self.assertEqual("Initial value", module.value)
 
-            self.assertIsInstance(module, Module)
+            if PY_36:
+                self.assertTrue(issubclass(type(module), Module))
+            else:
+                self.assertIsInstance(module, Module)
 
         with self.subTest("Load module"):
             module.__spec__ = module_spec
@@ -44,4 +50,7 @@ class TestFileModuleLoader(TestCase):
             self.assertIsInstance(module, SimpleModule)
             self.assertEqual("Lorem ipsum\n", module.value)
 
-            self.assertIsInstance(module, Module)
+            if PY_36:
+                self.assertTrue(issubclass(type(module), Module))
+            else:
+                self.assertIsInstance(module, Module)
