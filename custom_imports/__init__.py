@@ -15,6 +15,8 @@ from custom_imports.sample_importers import (
     json_importer,
 )
 
+__version__ = "1.0.0"
+
 __all__ = [
     "ModuleSpec",
     "Module",
