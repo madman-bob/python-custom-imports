@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  test-minimal: &test-minimal
+    docker:
+      - image: circleci/python:3.6
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            python -m unittest discover
+
+  test-python-3-7:
+    <<: *test-minimal
+
+    docker:
+      - image: circleci/python:3.7
+
+  test-python-3-8:
+    <<: *test-minimal
+
+    docker:
+      - image: circleci/python:3.8
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test-minimal
+      - test-python-3-7
+      - test-python-3-8
