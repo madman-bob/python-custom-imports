@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from io import IOBase
 from pathlib import Path
@@ -14,7 +12,7 @@ MT = TypeVar("MT")  # Module type.
 
 
 def load_file_module(
-    loader: FileModuleLoader[MT], module: Module[Path, MT], path: Path
+    loader: "FileModuleLoader[MT]", module: Module[Path, MT], path: Path
 ) -> None:
     with path.open() as file:
         loader.read_module(module, file)
